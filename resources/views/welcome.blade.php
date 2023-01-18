@@ -7,16 +7,20 @@
             @livewire('category-products', ['category' => $categories->first()])
         </section>
     </div>
+    @push('scripts')
     <script>
-        new Glider(document.querySelector('.glider'), {
-            slidesToShow: 5.5,
-            slidesToScroll: 5,
-            draggable: true,
-            dots: '.dots',
-            arrows: {
-                prev: '.glider-prev',
-                next: '.glider-next'
-            }
+        Livewire.on('glider', function () {
+            new Glider(document.querySelector('.glider'), {
+                slidesToShow: 5.5,
+                slidesToScroll: 5,
+                draggable: true,
+                dots: '.dots',
+                arrows: {
+                    prev: '.glider-prev',
+                    next: '.glider-next'
+                }
+            });
         });
     </script>
+    @endpush
 </x-app-layout>
