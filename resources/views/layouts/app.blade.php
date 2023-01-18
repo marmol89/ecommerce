@@ -36,7 +36,7 @@
         <script>
             function dropdown(){
                 return {
-                    open: true,
+                    open: false,
                     show(){
                         if(this.open){
                             this.open = false;
