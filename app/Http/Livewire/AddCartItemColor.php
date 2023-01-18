@@ -10,6 +10,17 @@ class AddCartItemColor extends Component
 
     public $colors;
 
+    public $qty = 1;
+
+    public $quantity = 0;
+
+    public $color_id = '';
+
+    public function updatedColorId($value)
+    {
+        $this->quantity = $this->product->colors->find($value)->pivot->quantity;
+    }
+
     public function mount()
     {
         $this->colors = $this->product->colors;
