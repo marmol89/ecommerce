@@ -30,5 +30,5 @@
                 Agregar al carrito de compras
             </x-button>
         </div>
-    </div
+    </div>
 </div>
