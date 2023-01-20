@@ -32,6 +32,9 @@
                     </li>
                 @endforeach
             </ul>
+            <x-jet-button class="mt-4" wire:click="limpiar">
+                Eliminar Filtros
+            </x-jet-button>
         </aside>
         <div class="md:col-span-2 lg:col-span-4">
             @if($view == 'grid')
@@ -92,9 +95,6 @@
                     @endforeach
                 </ul>
             @endif
-            <x-jet-button class="mt-4" wire:click="limpiar">
-                Eliminar Filtros
-            </x-jet-button>
         </div>
     </div>
 </div>
