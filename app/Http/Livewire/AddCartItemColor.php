@@ -45,7 +45,6 @@ class AddCartItemColor extends Component
             'weight' => 550,
             'options' => $this->options,
         ]);
-
         $this->quantity = qty_available($this->product->id, $this->color_id);
         $this->reset('qty');
         $this->emitTo('dropdown-cart', 'render');
