@@ -39,6 +39,7 @@ abstract class DuskTestCase extends BaseTestCase
                 '--headless',
                 '--no-sandbox',
                 '--disable-dev-shm-usage',
+                '--whitelisted-ips=""',
             ]);
         })->all());
 

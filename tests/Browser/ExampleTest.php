@@ -21,4 +21,19 @@ class ExampleTest extends DuskTestCase
                     ->screenshot('inicio');
         });
     }
+
+    /**
+     *
+     * @return void
+     */
+
+    public function testClick_on_category_menu(){
+
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/')
+                ->assertSee('Categorías')
+                ->screenshot('example-test');
+        });
+
+    }
 }
