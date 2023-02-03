@@ -4,14 +4,19 @@
             <div class="mb-4">
                 <x-jet-label value="Nombre de contacto" />
                 <x-jet-input type="text"
+                             wire:model.defer="contact"
                              placeholder="Introduzca el nombre de la persona que recibirá el pedido"
                              class="w-full"/>
+                <x-jet-input-error for="contact" />
             </div>
             <div>
                 <x-jet-label value="Teléfono de contacto" />
                 <x-jet-input type="text"
+                             wire:model.defer="phone"
+
                              placeholder="Introduzca el teléfono de contacto"
                              class="w-full"/>
+                <x-jet-input-error for="phone" />
             </div>
         </div>
         <div x-data="{ envio_type: @entangle('envio_type') }">
@@ -35,6 +40,7 @@
                                 <option value="{{ $department->id }}">{{ $department->name }}</option>
                             @endforeach
                         </select>
+                        <x-jet-input-error for="department_id" />
                     </div>
                     <div>
                         <x-jet-label value="Ciudad" />
@@ -44,6 +50,7 @@
                                 <option value="{{ $city->id }}">{{ $city->name }}</option>
                             @endforeach
                         </select>
+                        <x-jet-input-error for="city_id" />
                     </div>
                     <div>
                         <x-jet-label value="Distrito" />
@@ -53,14 +60,17 @@
                                 <option value="{{ $district->id }}">{{ $district->name }}</option>
                             @endforeach
                         </select>
+                        <x-jet-input-error for="district_id" />
                     </div>
                     <div>
                         <x-jet-label value="Dirección" />
                         <x-jet-input class="w-full" wire:model="address" type="text" />
+                        <x-jet-input-error for="address" />
                     </div>
                     <div class="col-span-2">
                         <x-jet-label value="Referencia" />
                         <x-jet-input class="w-full" wire:model="reference" type="text" />
+                        <x-jet-input-error for="reference" />
                     </div>
                 </div>
 
@@ -70,7 +80,7 @@
         </div>
 
         <div>
-            <x-jet-button class="mt-6 mb-4">
+            <x-jet-button  wire:click="create_order" class="mt-6 mb-4">
                 Continuar con la compra
             </x-jet-button>
             <hr>
