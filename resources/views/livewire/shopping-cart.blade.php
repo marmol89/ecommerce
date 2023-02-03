@@ -19,14 +19,14 @@
                                 <p class="font-bold">{{ $item->name }}</p>
                                 @if($item->options->color)
                                     <span>
-Color: {{ __(ucfirst($item->options->color)) }}
-</span>
+                                        Color: {{ __(ucfirst($item->options->color)) }}
+                                    </span>
                                 @endif
                                 @if($item->options->size)
                                     <span class="mx-1">-</span>
                                     <span>
-{{ __($item->options->size) }}
-</span>
+                                        {{ __($item->options->size) }}
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -37,8 +37,18 @@ Color: {{ __(ucfirst($item->options->color)) }}
                             <i class="fas fa-trash"></i>
                         </a>
                     </td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                        @livewire('update-cart-item', ['rowId' => $item->rowId], key($item->rowId))
+                    </td>
+                    <td>
+                        @if($item->options->size)
+                            @livewire('update-cart-item-size', ['rowId' => $item->rowId], key($item->rowId))
+                        @elseif($item->options->color)
+                            @livewire('update-cart-item-color', ['rowId' => $item->rowId], key($item->rowId))
+                        @else
+                            @livewire('update-cart-item', ['rowId' => $item->rowId], key($item->rowId))
+                        @endif
+                    </td>
                 </tr>
             @endforeach
             </tbody>
