@@ -24,27 +24,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', WelcomeController::class);
 
+Route::get('search', SearchController::class)->name('search');
+
 Route::get('categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
 
 Route::get('products/{product}', [ProductsController::class, 'show'])->name('products.show');
 
-Route::get('/deletecart', function () {
-    Cart::destroy();
-});
-
-Route::get('search', SearchController::class)->name('search');
-
 Route::get('shopping-cart', ShoppingCart::class)->name('shopping-cart');
 
-Route::get('orders/create', CreateOrder::class)->middleware('auth')->name('orders.create');
-
-Route::get('orders/{order}/payment', PaymentOrder::class)->name('orders.payment');
-
-Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
-
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth'])->group(function (){
+    Route::get('orders/create', CreateOrder::class)->name('orders.create');
+    Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+    Route::get('orders/{order}/payment', PaymentOrder::class)->name('orders.payment');
+});
 
 
