@@ -1,6 +1,6 @@
 <header class="bg-trueGray-700 sticky top-0" style="z-index: 900" x-data="dropdown()">
     <div class="container-menu flex items-center h-16 justify-between md:justify-start">
-        <a :class="{'bg-opacity-100 text-orange-500': open}" x-on:click="show()"
+        <a id="category" :class="{'bg-opacity-100 text-orange-500': open}" x-on:click="show()"
            class="flex flex-col items-center justify-center order-last md:order-first px-6 sm:px-4 bg-white bg-opacity-25 text-white cursor-pointer font-semibold h-full">
             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                 <path class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -81,8 +81,8 @@
             <div x-on:click.away="close()" class="grid grid-cols-4 h-full relative">
                 <ul class="bg-white">
                     @foreach($categories as $category)
-                        <li class="navigation-link text-trueGray-500 hover:bg-orange-500 hover:text-white">
-                            <a href="{{ route('categories.show', $category) }}" class="py-2 px-4 text-sm flex items-center">
+                        <li dusk="category_{{$category->id}}"  class="navigation-link text-trueGray-500 hover:bg-orange-500 hover:text-white">
+                            <a  href="{{ route('categories.show', $category) }}" class="py-2 px-4 text-sm flex items-center">
                                 <span class="flex justify-center w-9">
                                     {!! $category->icon !!}
                                 </span>
