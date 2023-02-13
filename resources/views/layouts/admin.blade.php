@@ -30,6 +30,8 @@
     <script src="{{ asset('vendor/sweetalert2/dist/sweetalert2.js') }}"></script>
         <script src="{{ asset('vendor/dropzone/dist/dropzone.js') }}"></script>
 {{--    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>--}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <!-- Dropzone -->
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
