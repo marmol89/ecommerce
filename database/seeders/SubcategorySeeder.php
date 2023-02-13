@@ -117,9 +117,10 @@ class SubcategorySeeder extends Seeder
                 'slug' => Str::slug('Relojes'),
             ],
         ];
+
         foreach ($subcategories as $subcategory)
         {
-            Subcategory::factory(1)->create($subcategory);
+            Subcategory::create($subcategory);
         }
     }
 }
