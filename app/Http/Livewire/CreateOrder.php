@@ -31,6 +31,7 @@ class CreateOrder extends Component
     public function create_order()
     {
         $rules = $this->rules;
+
         if ($this->envio_type == 2) {
             $rules['department_id'] = 'required';
             $rules['city_id'] = 'required';
@@ -38,9 +39,11 @@ class CreateOrder extends Component
             $rules['address'] = 'required';
             $rules['reference'] = 'required';
         }
+
         $this->validate($rules);
 
         $order = new Order();
+
         $order->user_id = auth()->user()->id;
         $order->contact = $this->contact;
         $order->phone = $this->phone;
@@ -51,11 +54,14 @@ class CreateOrder extends Component
 
         if ($this->envio_type == 2) {
             $order->shipping_cost = $this->shipping_cost;
-            $order->department_id = $this->department_id;
-            $order->city_id = $this->city_id;
-            $order->district_id = $this->district_id;
-            $order->address = $this->address;
-            $order->reference = $this->reference;
+
+            $order->envio = json_encode([
+                'department' => Department::find($this->department_id)->name,
+                'city' => City::find($this->city_id)->name,
+                'district' => District::find($this->district_id)->name,
+                'address' => $this->address,
+                'reference' => $this->reference
+            ]);
         }
 
         $order->save();
@@ -65,6 +71,7 @@ class CreateOrder extends Component
         }
 
         Cart::destroy();
+
         return redirect()->route('orders.payment', $order);
     }
 
