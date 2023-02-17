@@ -16,7 +16,6 @@ class WelcomeController extends Controller
                 $mensaje = "Tiene $pendientes ordenes pendientes de pago. <a class='font-bold' href='" . route('orders.index') .
                     "?status=1'>Pagar</a>";
                 session()->flash('flash.banner', $mensaje);
-                session()->flash('flash.bannerStyle', 'danger');
             }
         }
 
