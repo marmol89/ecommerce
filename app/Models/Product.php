@@ -54,4 +54,28 @@ class Product extends Model
         }
     }
 
+    public function getSalesAttribute() {
+        $orders = Order::query()->where('status' , '>', 1)->where('status' , '<' , 5)->get();
+
+        if ($orders)
+        {
+            $products[] = [];
+        }
+
+        foreach ($orders as $order)
+        {
+            $products[] = json_decode($order->content);
+        }
+
+        $count = 0;
+        foreach ($products as $product){
+            foreach ($product as $order){
+                if ($order->id == $this->id){
+                    $count = $count + $order->qty;
+                }
+            }
+        }
+        return $count;
+    }
+
 }
