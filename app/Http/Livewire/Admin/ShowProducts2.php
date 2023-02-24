@@ -13,7 +13,9 @@ class ShowProducts2 extends Component
     public $search;
     public $pages;
     public $pageNum;
-    public $columns= ['name', 'marca', 'categoria', 'stock', 'vetas', 'estado', 'fecha', 'precio'];
+    public $columns= ['name', 'marca', 'categoria', 'stock', 'ventas', 'estado', 'fecha', 'precio', 'editar'];
+    public $name = true;
+    public $showColumnFilter = true;
 
     public function mount()
     {

@@ -29,34 +29,30 @@
         <label>
             <span>Nombre</span>
             <input type="checkbox" wire:model="columns" value="name" checked/>
-        </label>
-        <label>
+
             <span>Marca</span>
             <input type="checkbox" wire:model="columns" value="marca" checked/>
-        </label>
-        <label>
+
             <span>Categoria</span>
             <input type="checkbox" wire:model="columns" value="categoria" checked/>
-        </label>
-        <label>
+
             <span>Stock</span>
             <input type="checkbox" wire:model="columns" value="stock" checked/>
-        </label>
-        <label>
-            <span>Vetas</span>
-            <input type="checkbox" wire:model="columns" value="vetas" checked/>
-        </label>
-        <label>
+
+            <span>Ventas</span>
+            <input type="checkbox" wire:model="columns" value="ventas" checked/>
+
             <span>estado</span>
             <input type="checkbox" wire:model="columns" value="estado" checked/>
-        </label>
-        <label>
+
             <span>Fecha de Creacion</span>
             <input type="checkbox" wire:model="columns" value="fecha" checked/>
-        </label>
-        <label>
+
             <span>Precio</span>
             <input type="checkbox" wire:model="columns" value="precio" checked/>
+
+            <span>Editar</span>
+            <input type="checkbox" wire:model="columns" value="editar" checked/>
         </label>
     </div>
 
@@ -72,37 +68,56 @@
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                 <tr>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Nombre
-                    </th>
+                    @if(in_array('name' , $columns))
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Nombre
+                        </th>
+                    @endif
+                    @if(in_array('marca' , $columns))
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Marca
                     </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Categoría
-                    </th>
+                    @endif
+                    @if(in_array('categoria' , $columns))
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Categoría
+                        </th>
+                     @endif
+                    @if(in_array('stock' , $columns))
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Stock
                     </th>
+                    @endif
+                    @if(in_array('ventas' , $columns))
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Ventas
                     </th>
+                    @endif
+                    @if(in_array('estado' , $columns))
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Estado
                     </th>
+                    @endif
+                    @if(in_array('fecha' , $columns))
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Fecha de Creacion
                     </th>
+                    @endif
+                    @if(in_array('precio' , $columns))
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Precio
                     </th>
+                    @endif
+                    @if(in_array('editar' , $columns))
                     <th scope="col" class="relative px-6 py-3">
                         <span class="sr-only">Editar</span>
                     </th>
+                    @endif
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                 @foreach($products as $product)
+                    @if(in_array('name' , $this->columns))
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
@@ -116,13 +131,19 @@
                                 </div>
                             </div>
                         </td>
+                        @endif
+                        @if(in_array('marca' , $columns))
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm font-medium text-gray-900">{{ $product->brand->name }}</div>
                         </td>
+                        @endif
+                        @if(in_array('categoria' , $columns))
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">{{ $product->subcategory->category->name }}</div>
                             <div class="text-sm text-gray-500">{{ $product->subcategory->name }}</div>
                         </td>
+                        @endif
+                        @if(in_array('stock' , $columns))
                         @if($product->subcategory->color && $product->subcategory->size)
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">{{$product->stock}}</div>
@@ -136,24 +157,35 @@
                                 <div class="text-sm text-gray-900">{{$product->stock}}</div>
                             </td>
                         @endif
+                        @endif
+                        @if(in_array('ventas' , $columns))
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">{{$product->getSalesAttribute()}}</div>
                         </td>
+                        @endif
+                        @if(in_array('estado' , $columns))
                         <td class="px-6 py-4 whitespace-nowrap">
                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-{{ $product->status == 1 ? 'red' : 'green'
                             }}-100 text-{{ $product->status == 1 ? 'red' : 'green' }}-800">
                                 {{ $product->status == 1 ? 'Borrador' : 'Publicado' }}
                             </span>
                         </td>
+                        @endif
+                        @if(in_array('fecha' , $columns))
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">{{$product->created_at}}</div>
                         </td>
+                        @endif
+                        @if(in_array('precio' , $columns))
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             {{ $product->price }} &euro;
                         </td>
+                        @endif
+                        @if(in_array('editar' , $columns))
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             <a href="{{ route('admin.products.edit', $product) }}" class="text-indigo-600 hover:text-indigo-900">Editar</a>
                         </td>
+                        @endif
                     </tr>
                 @endforeach
                 </tbody>
