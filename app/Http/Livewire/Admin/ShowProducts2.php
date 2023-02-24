@@ -40,7 +40,7 @@ class ShowProducts2 extends Component
 
     public function render()
     {
-        $products = Product::where('name', 'LIKE', "%{$this->search}%")->paginate($this->pageNum ?? 10);
+        $products = Product::query()->applyFilters(['search'=> $this->search])->paginate($this->pageNum ?? 10);
 
         return view('livewire.admin.show-products2', compact('products'))
             ->layout('layouts.admin');
