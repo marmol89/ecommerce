@@ -25,6 +25,41 @@
         </label>
     </div>
 
+    <div class="mt-5 ml-5">
+        <label>
+            <span>Nombre</span>
+            <input type="checkbox" wire:model="columns" value="name" checked/>
+        </label>
+        <label>
+            <span>Marca</span>
+            <input type="checkbox" wire:model="columns" value="marca" checked/>
+        </label>
+        <label>
+            <span>Categoria</span>
+            <input type="checkbox" wire:model="columns" value="categoria" checked/>
+        </label>
+        <label>
+            <span>Stock</span>
+            <input type="checkbox" wire:model="columns" value="stock" checked/>
+        </label>
+        <label>
+            <span>Vetas</span>
+            <input type="checkbox" wire:model="columns" value="vetas" checked/>
+        </label>
+        <label>
+            <span>estado</span>
+            <input type="checkbox" wire:model="columns" value="estado" checked/>
+        </label>
+        <label>
+            <span>Fecha de Creacion</span>
+            <input type="checkbox" wire:model="columns" value="fecha" checked/>
+        </label>
+        <label>
+            <span>Precio</span>
+            <input type="checkbox" wire:model="columns" value="precio" checked/>
+        </label>
+    </div>
+
     <x-table-responsive>
         <div class="px-6 py-4">
             <x-jet-input class="w-full"

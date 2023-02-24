@@ -12,8 +12,8 @@ class ShowProducts2 extends Component
 
     public $search;
     public $pages;
-
     public $pageNum;
+    public $columns= ['name', 'marca', 'categoria', 'stock', 'vetas', 'estado', 'fecha', 'precio'];
 
     public function mount()
     {
@@ -26,6 +26,10 @@ class ShowProducts2 extends Component
         $this->resetPage();
     }
 
+    public function updatedColumns()
+    {
+        $this->resetPage();
+    }
 
     public function updatingSearch()
     {
