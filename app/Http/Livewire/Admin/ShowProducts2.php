@@ -11,6 +11,21 @@ class ShowProducts2 extends Component
     use WithPagination;
 
     public $search;
+    public $pages;
+
+    public $pageNum;
+
+    public function mount()
+    {
+        $this->pages = [5,10,15,25,50,100];
+        $this->pageNum = 10;
+    }
+
+    public function updatedPageNum()
+    {
+        $this->resetPage();
+    }
+
 
     public function updatingSearch()
     {
@@ -19,7 +34,7 @@ class ShowProducts2 extends Component
 
     public function render()
     {
-        $products = Product::where('name', 'LIKE', "%{$this->search}%")->paginate(10);
+        $products = Product::where('name', 'LIKE', "%{$this->search}%")->paginate($this->pageNum ?? 10);
 
         return view('livewire.admin.show-products2', compact('products'))
             ->layout('layouts.admin');

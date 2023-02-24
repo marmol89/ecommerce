@@ -9,7 +9,21 @@
                 Agregar producto
             </x-button-link>
         </div>
+
     </x-slot>
+
+
+    <div class="mt-5 ml-5">
+        <x-jet-label value="Mostras Usuario" />
+        <label>
+            <select class="form-control" wire:model="pageNum">
+                <option value="" selected disabled>Seleccione una numero</option>
+                @foreach($pages as $page)
+                    <option value="{{ $page }}">{{ $page }}</option>
+                @endforeach
+            </select>
+        </label>
+    </div>
 
     <x-table-responsive>
         <div class="px-6 py-4">
